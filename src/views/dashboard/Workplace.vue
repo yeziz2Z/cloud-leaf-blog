@@ -1,6 +1,6 @@
 <template>
-  <page-header-wrapper>
-    <template v-slot:content>
+<!--  <page-header-wrapper breadcrumb="false" title="false">-->
+<!--    <template v-slot:content>
       <div class="page-header-content">
         <div class="avatar">
           <a-avatar size="large" :src="currentUser.avatar" />
@@ -25,7 +25,7 @@
           <a-statistic title="项目访问" :value="2223" />
         </div>
       </div>
-    </template>
+    </template>-->
 
     <div>
       <a-row :gutter="24">
@@ -128,7 +128,7 @@
         </a-col>
       </a-row>
     </div>
-  </page-header-wrapper>
+<!--  </page-header-wrapper>-->
 </template>
 
 <script>

@@ -1,6 +1,5 @@
 <template>
   <!-- hidden PageHeaderWrapper title demo -->
-  <page-header-wrapper :title="false" :content="$t('form.basic-form.basic.description')">
     <a-card :body-style="{padding: '24px 32px'}" :bordered="false">
       <a-form @submit="handleSubmit" :form="form">
         <a-form-item
@@ -108,7 +107,6 @@
         </a-form-item>
       </a-form>
     </a-card>
-  </page-header-wrapper>
 </template>
 
 <script>
