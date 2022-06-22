@@ -30,11 +30,11 @@
       </div>
     </template>
 
-    <setting-drawer v-if="isDev" :settings="settings" @change="handleSettingChange">
+<!--    <setting-drawer v-if="isDev" :settings="settings" @change="handleSettingChange">
       <div style="margin: 12px 0;">
         This is SettingDrawer custom footer content.
       </div>
-    </setting-drawer>
+    </setting-drawer>-->
     <template v-slot:rightContentRender>
       <right-content :top-menu="settings.layout === 'topmenu'" :is-mobile="isMobile" :theme="settings.theme" />
     </template>
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { SettingDrawer, updateTheme } from '@ant-design-vue/pro-layout'
+import { updateTheme } from '@ant-design-vue/pro-layout'
 import { i18nRender } from '@/locales'
 import { mapState } from 'vuex'
 import { CONTENT_WIDTH_TYPE, SIDEBAR_TYPE, TOGGLE_MOBILE_TYPE } from '@/store/mutation-types'
@@ -60,7 +60,6 @@ import LogoSvg from '../assets/logo.svg?inline'
 export default {
   name: 'BasicLayout',
   components: {
-    SettingDrawer,
     RightContent,
     GlobalFooter,
     LogoSvg

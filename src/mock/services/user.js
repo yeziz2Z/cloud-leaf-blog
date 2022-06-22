@@ -480,8 +480,7 @@ const userNav = options => {
       parentId: 0,
       id: 1,
       meta: {
-        icon: 'dashboard',
-        title: '仪表盘',
+        title: '首页',
         show: true
       },
       component: 'RouteView',
@@ -526,7 +525,6 @@ const userNav = options => {
       parentId: 0,
       id: 10,
       meta: {
-        icon: 'form',
         title: '表单页'
       },
       redirect: '/form/base-form',
@@ -566,7 +564,6 @@ const userNav = options => {
       parentId: 0,
       id: 10010,
       meta: {
-        icon: 'table',
         title: '列表页',
         show: true
       },
@@ -653,7 +650,6 @@ const userNav = options => {
       id: 10018,
       meta: {
         title: '详情页',
-        icon: 'profile',
         show: true
       },
       redirect: '/profile/basic',
@@ -687,11 +683,10 @@ const userNav = options => {
       id: 10021,
       meta: {
         title: '结果页',
-        icon: 'check-circle-o',
         show: true
       },
       redirect: '/result/success',
-      component: 'PageView'
+      component: 'RouteView'
     },
     {
       name: 'success',
@@ -761,7 +756,7 @@ const userNav = options => {
     },
 
     // account
-    {
+    /*{
       name: 'account',
       parentId: 0,
       id: 10028,
@@ -796,7 +791,7 @@ const userNav = options => {
       },
       redirect: '/account/settings/basic',
       component: 'AccountSettings'
-    },
+    },*/
     {
       name: 'BasicSettings',
       path: '/account/settings/basic',

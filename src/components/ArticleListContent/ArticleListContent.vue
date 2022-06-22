@@ -1,15 +1,21 @@
 <template>
   <div class="antd-pro-components-article-list-content-index-listContent">
-    <div class="description">
-      <slot>
-        {{ description }}
-      </slot>
+    <div>
+      <div class="description">
+        <slot>
+          {{ description }}
+        </slot>
+      </div>
+
+      <div class="extra">
+        <a-avatar :src="avatar" size="small" />
+        <a :href="href">{{ owner }}</a> 发布在 <a :href="href">{{ href }}</a>
+        <em>{{ updateAt | moment }}</em>
+      </div>
     </div>
-    <div class="extra">
-      <a-avatar :src="avatar" size="small" />
-      <a :href="href">{{ owner }}</a> 发布在 <a :href="href">{{ href }}</a>
-      <em>{{ updateAt | moment }}</em>
-    </div>
+    <span class="coverImage">
+      <img src="/avatar2.jpg"  height="120px" alt="">
+    </span>
   </div>
 </template>
 
@@ -53,6 +59,9 @@ export default {
     max-width: 720px;
     line-height: 22px;
   }
+  .coverImage{
+    float: right;
+  }
   .extra {
     margin-top: 16px;
     color: @text-color-secondary;
@@ -72,6 +81,7 @@ export default {
       color: @disabled-color;
       font-style: normal;
     }
+
   }
 }
 
