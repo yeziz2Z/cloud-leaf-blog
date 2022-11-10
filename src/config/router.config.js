@@ -15,6 +15,10 @@ export const asyncRouterMap = [
     meta: { title: 'menu.home' },
     redirect: '/dashboard/workplace',
     children: [
+      /*{
+        path: '/editor/article',
+        component: () => import(/!* webpackChunkName: "fail" *!/ '@/views/editor/Article')
+      },*/
       // dashboard
       {
         path: '/dashboard',
@@ -70,6 +74,7 @@ export const asyncRouterMap = [
           }
         ]
       },
+
       // list
       {
         path: '/list',
@@ -333,11 +338,13 @@ export const asyncRouterMap = [
       */
     ]
   },
+
   {
     path: '*',
     redirect: '/404',
     hidden: true
-  }
+  },
+
 ]
 
 /**
@@ -365,17 +372,155 @@ export const constantRouterMap = [
         path: 'register-result',
         name: 'registerResult',
         component: () => import(/* webpackChunkName: "user" */ '@/views/user/RegisterResult')
-      },
-      {
-        path: 'recover',
-        name: 'recover',
-        component: undefined
       }
     ]
   },
+  {
+    component: () => import('@/views/editor/Article'),
+    path: '/editor/article'
+  },
 
+  {
+    path: '/',
+    name: 'index',
+    component: BasicLayout,
+    meta: { title: 'menu.home' },
+    redirect: '/index',
+    children: [
+      /*{
+        path: '/editor/article',
+        component: () => import(/!* webpackChunkName: "fail" *!/ '@/views/editor/Article')
+      },*/
+
+      {
+        path: '/index',
+        component: () => import(/* webpackChunkName: "fail" */ '@/views/Index')
+      },
+      // dashboard
+      {
+        path: '/dashboard',
+        name: 'dashboard',
+        redirect: '/dashboard/workplace',
+        component: RouteView,
+        meta: { title: 'menu.dashboard', keepAlive: true, icon: bxAnaalyse, permission: ['dashboard'] },
+        children: [
+          {
+            path: '/dashboard/analysis/:pageNo([1-9]\\d*)?',
+            name: 'Analysis',
+            component: () => import('@/views/dashboard/Analysis'),
+            meta: { title: 'menu.dashboard.analysis', keepAlive: false, permission: ['dashboard'] }
+          },
+          // 外部链接
+          {
+            path: 'https://www.baidu.com/',
+            name: 'Monitor',
+            meta: { title: 'menu.dashboard.monitor', target: '_blank' }
+          },
+          {
+            path: '/dashboard/workplace',
+            name: 'Workplace',
+            component: () => import('@/views/dashboard/Workplace'),
+            meta: { title: 'menu.dashboard.workplace', keepAlive: true, permission: ['dashboard'] }
+          }
+        ]
+      },
+
+      // result
+      {
+        path: '/result',
+        name: 'result',
+        component: RouteView,
+        redirect: '/result/success',
+        meta: { title: 'menu.result', icon: 'check-circle-o', permission: ['result'] },
+        children: [
+          {
+            path: '/result/success',
+            name: 'ResultSuccess',
+            component: () => import(/* webpackChunkName: "result" */ '@/views/result/Success'),
+            meta: { title: 'menu.result.success', keepAlive: false, hiddenHeaderContent: true, permission: ['result'] }
+          },
+          {
+            path: '/result/fail',
+            name: 'ResultFail',
+            component: () => import(/* webpackChunkName: "result" */ '@/views/result/Error'),
+            meta: { title: 'menu.result.fail', keepAlive: false, hiddenHeaderContent: true, permission: ['result'] }
+          }
+        ]
+      },
+
+      // account
+      {
+        path: '/account',
+        component: RouteView,
+        redirect: '/account/center',
+        name: 'account',
+        meta: { title: 'menu.account', icon: 'user', keepAlive: true, permission: ['user'] },
+        children: [
+          {
+            path: '/account/center',
+            name: 'center',
+            component: () => import('@/views/account/center'),
+            meta: { title: 'menu.account.center', keepAlive: true, permission: ['user'] }
+          },
+          {
+            path: '/account/settings',
+            name: 'settings',
+            component: () => import('@/views/account/settings/Index'),
+            meta: { title: 'menu.account.settings', hideHeader: true, permission: ['user'] },
+            redirect: '/account/settings/basic',
+            hideChildrenInMenu: true,
+            children: [
+              {
+                path: '/account/settings/basic',
+                name: 'BasicSettings',
+                component: () => import('@/views/account/settings/BasicSetting'),
+                meta: { title: 'account.settings.menuMap.basic', hidden: true, permission: ['user'] }
+              },
+              {
+                path: '/account/settings/security',
+                name: 'SecuritySettings',
+                component: () => import('@/views/account/settings/Security'),
+                meta: {
+                  title: 'account.settings.menuMap.security',
+                  hidden: true,
+                  keepAlive: true,
+                  permission: ['user']
+                }
+              },
+              {
+                path: '/account/settings/custom',
+                name: 'CustomSettings',
+                component: () => import('@/views/account/settings/Custom'),
+                meta: { title: 'account.settings.menuMap.custom', hidden: true, keepAlive: true, permission: ['user'] }
+              },
+              {
+                path: '/account/settings/binding',
+                name: 'BindingSettings',
+                component: () => import('@/views/account/settings/Binding'),
+                meta: { title: 'account.settings.menuMap.binding', hidden: true, keepAlive: true, permission: ['user'] }
+              },
+              {
+                path: '/account/settings/notification',
+                name: 'NotificationSettings',
+                component: () => import('@/views/account/settings/Notification'),
+                meta: {
+                  title: 'account.settings.menuMap.notification',
+                  hidden: true,
+                  keepAlive: true,
+                  permission: ['user']
+                }
+              }
+            ]
+          }
+        ]
+      }
+
+    ]
+  },
   {
     path: '/404',
     component: () => import(/* webpackChunkName: "fail" */ '@/views/exception/404')
-  }
+  },
+
+
 ]

@@ -50,7 +50,9 @@ const constantRouterComponents = {
   SecuritySettings: () => import('@/views/account/settings/Security'),
   CustomSettings: () => import('@/views/account/settings/Custom'),
   BindingSettings: () => import('@/views/account/settings/Binding'),
-  NotificationSettings: () => import('@/views/account/settings/Notification')
+  NotificationSettings: () => import('@/views/account/settings/Notification'),
+
+  Article: () => import('@/views/editor/Article')
 
   // 'TestWork': () => import(/* webpackChunkName: "TestWork" */ '@/views/dashboard/TestWork')
 }
@@ -93,10 +95,10 @@ export const generatorDynamicRouter = token => {
         listToTree(result, childrenNav, 0)
         rootRouter.children = childrenNav
         menuNav.push(rootRouter)
-        console.log('menuNav', menuNav)
         const routers = generator(menuNav)
         routers.push(notFoundRouter)
-        console.log('routers', routers)
+        console.log("===============================")
+        console.log(routers)
         resolve(routers)
       })
       .catch(err => {

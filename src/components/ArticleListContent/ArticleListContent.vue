@@ -1,6 +1,6 @@
 <template>
   <div class="antd-pro-components-article-list-content-index-listContent">
-    <div>
+<!--    <div>-->
       <div class="description">
         <slot>
           {{ description }}
@@ -12,10 +12,10 @@
         <a :href="href">{{ owner }}</a> 发布在 <a :href="href">{{ href }}</a>
         <em>{{ updateAt | moment }}</em>
       </div>
-    </div>
+<!--    </div>
     <span class="coverImage">
       <img src="/avatar2.jpg"  height="120px" alt="">
-    </span>
+    </span>-->
   </div>
 </template>
 

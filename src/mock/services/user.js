@@ -474,6 +474,17 @@ const info = options => {
  */
 const userNav = options => {
   const nav = [
+    {
+      name: 'index',
+      parentId: 0,
+      id: 899,
+      meta: {
+        title: '首页',
+        show: true
+      },
+      component: 'Index'
+    },
+
     // dashboard
     {
       name: 'dashboard',
@@ -718,7 +729,6 @@ const userNav = options => {
       id: 10024,
       meta: {
         title: '异常页',
-        icon: 'warning',
         show: true
       },
       redirect: '/exception/403',
@@ -756,7 +766,7 @@ const userNav = options => {
     },
 
     // account
-    /*{
+    {
       name: 'account',
       parentId: 0,
       id: 10028,
@@ -791,7 +801,7 @@ const userNav = options => {
       },
       redirect: '/account/settings/basic',
       component: 'AccountSettings'
-    },*/
+    },
     {
       name: 'BasicSettings',
       path: '/account/settings/basic',
