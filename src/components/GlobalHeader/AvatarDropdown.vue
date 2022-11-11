@@ -1,8 +1,10 @@
 <template>
   <a-dropdown v-if="currentUser && currentUser.name" placement="bottomRight">
     <span class="ant-pro-account-avatar">
-      <a-avatar size="small" src="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png"
-                class="antd-pro-global-header-index-avatar"/>
+      <a-avatar
+        size="small"
+        src="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png"
+        class="antd-pro-global-header-index-avatar"/>
       <span>{{ currentUser.name }}</span>
     </span>
     <template v-slot:overlay>
@@ -13,7 +15,7 @@
           写文章
         </a-menu-item>
         <a-menu-item v-if="menu" key="article2" @click="handleToWriteArticle">
-          <a-icon type="edit"/>
+          <a-icon type="shop-o"/>
           草稿箱
         </a-menu-item>
         <a-menu-divider/>
@@ -39,7 +41,7 @@
 </template>
 
 <script>
-import {Modal} from 'ant-design-vue'
+import { Modal } from 'ant-design-vue'
 
 export default {
   name: 'AvatarDropdown',
@@ -56,16 +58,16 @@ export default {
     }
   },
   methods: {
-    handleToWriteArticle() {
-      this.$router.push({path: '/editor/article'})
+    handleToWriteArticle () {
+      this.$router.push({ path: '/editor/article' })
     },
-    handleToCenter() {
-      this.$router.push({path: '/account/center'})
+    handleToCenter () {
+      this.$router.push({ path: '/account/center' })
     },
-    handleToSettings() {
-      this.$router.push({path: '/account/settings'})
+    handleToSettings () {
+      this.$router.push({ path: '/account/settings' })
     },
-    handleLogout(e) {
+    handleLogout (e) {
       Modal.confirm({
         title: this.$t('layouts.usermenu.dialog.title'),
         content: this.$t('layouts.usermenu.dialog.content'),
@@ -74,10 +76,10 @@ export default {
           //   setTimeout(Math.random() > 0.5 ? resolve : reject, 1500)
           // }).catch(() => console.log('Oops errors!'))
           return this.$store.dispatch('Logout').then(() => {
-            this.$router.push({name: 'login'})
+            this.$router.push({ name: 'login' })
           })
         },
-        onCancel() {
+        onCancel () {
         }
       })
     }

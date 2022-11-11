@@ -49,6 +49,7 @@
           >
             <a-list-item :key="item.id" slot="renderItem" slot-scope="item">
               <template slot="actions">
+                <icon-text type="eye-o" :text="item.view" />
                 <icon-text type="star-o" :text="item.star" />
                 <icon-text type="like-o" :text="item.like" />
                 <icon-text type="message" :text="item.message" />
@@ -56,11 +57,11 @@
               <a-list-item-meta>
                 <a slot="title" href="https://vue.ant.design/">{{ item.title }}</a>
                 <template slot="description">
-              <span>
-                <a-tag>Ant Design</a-tag>
-                <a-tag>设计语言</a-tag>
-                <a-tag>蚂蚁金服</a-tag>
-              </span>
+                  <span>
+                    <a-tag>Ant Design</a-tag>
+                    <a-tag>设计语言</a-tag>
+                    <a-tag>蚂蚁金服</a-tag>
+                  </span>
                 </template>
               </a-list-item-meta>
               <article-list-content :description="item.description" :owner="item.owner" :avatar="item.avatar" :href="item.href" :updateAt="item.updatedAt" />
@@ -71,8 +72,14 @@
           </a-list>
         </a-card>
       </a-col>
-      <a-col style="padding: 0 12px" :xl="8" :lg="24" :md="24" :sm="24" :xs="24">
-<!--        <a-card
+      <a-col
+        style="padding: 0 12px"
+        :xl="8"
+        :lg="24"
+        :md="24"
+        :sm="24"
+        :xs="24">
+        <!--        <a-card
           title="便捷导航"
           style="margin-bottom: 24px"
           :bordered="false"
@@ -119,7 +126,7 @@
 
 <script>
 import { TagSelect, StandardFormRow, ArticleListContent, Radar } from '@/components'
-import {Carousel} from 'ant-design-vue'
+import { Carousel } from 'ant-design-vue'
 import IconText from './list/search/components/IconText'
 
 const DataSet = require('@antv/data-set')
@@ -220,7 +227,7 @@ export default {
       this.$http.get('/workplace/teams').then(res => {
         this.teams = res.result
       })
-    },
+    }
   }
 }
 </script>
@@ -288,7 +295,6 @@ export default {
   /deep/ .custom-slick-arrow:hover {
     opacity: 0.5;
   }
-
 
 }
 </style>

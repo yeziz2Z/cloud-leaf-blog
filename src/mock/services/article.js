@@ -53,6 +53,7 @@ const article = (options) => {
       avatar: avatar[num],
       owner: owner[num],
       content: content,
+      view: Mock.mock('@integer(100, 20000)'),
       star: Mock.mock('@integer(1, 999)'),
       percent: Mock.mock('@integer(1, 999)'),
       like: Mock.mock('@integer(1, 999)'),

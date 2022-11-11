@@ -2,11 +2,12 @@
   <a-card>
     <a-row>
       <a-col :span="21">
-        <a-textarea class="blogTitle"
-                    v-model="test"
-                    rows="1"
-                    :max-length="35"
-                    placeholder="请输入文章标题...">
+        <a-textarea
+          class="blogTitle"
+          v-model="test"
+          rows="1"
+          :max-length="35"
+          placeholder="请输入文章标题...">
 
         </a-textarea>
       </a-col>
@@ -55,11 +56,12 @@
                   <a-switch default-checked/>
                 </a-form-item>
                 <a-form-item label="摘要">
-                  <a-textarea v-decorator="['summary', { rules: [{ required: true, message: '请输入文章摘要!' }] }]"
-                              style="resize: none"
-                              rows="4"
-                              :max-length="100"
-                              placeholder="文章摘要...">
+                  <a-textarea
+                    v-decorator="['summary', { rules: [{ required: true, message: '请输入文章摘要!' }] }]"
+                    style="resize: none"
+                    rows="4"
+                    :max-length="100"
+                    placeholder="文章摘要...">
 
                   </a-textarea>
                 </a-form-item>
@@ -87,40 +89,44 @@
       </a-col>
     </a-row>
 
-    <Editor class="bytemd" :value="value" :locale="zhHans" :plugins="plugins" :uploadImages="uploadImage"
-            @change="handleChange1"/>
+    <Editor
+      class="bytemd"
+      :value="value"
+      :locale="zhHans"
+      :plugins="plugins"
+      :uploadImages="uploadImage"
+      @change="handleChange1"/>
   </a-card>
 
 </template>
 
 <script>
 
-import {Editor} from '@bytemd/vue'
-import AvatarDropdown from "@/components/GlobalHeader/AvatarDropdown";
+import { Editor } from '@bytemd/vue'
+import AvatarDropdown from '@/components/GlobalHeader/AvatarDropdown'
 import gfm from '@bytemd/plugin-gfm'
-import highlight from "@bytemd/plugin-highlight-ssr"
+import highlight from '@bytemd/plugin-highlight-ssr'
 import zhHans from 'bytemd/locales/zh_Hans.json'
 import 'bytemd/dist/index.min.css'
-
 
 const plugins = [
   gfm(),
   highlight()
 ]
 
-function getBase64(img, callback) {
-  const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result));
-  reader.readAsDataURL(img);
+function getBase64 (img, callback) {
+  const reader = new FileReader()
+  reader.addEventListener('load', () => callback(reader.result))
+  reader.readAsDataURL(img)
 }
 
 export default {
-  name: "Article",
+  name: 'Article',
   components: {
     AvatarDropdown,
     Editor
   },
-  data() {
+  data () {
     return {
       value: '',
       plugins,
@@ -136,19 +142,19 @@ export default {
       },
       confirmLoading: false,
       loading: false,
-      imageUrl: '',
+      imageUrl: ''
 
     }
   },
-  beforeCreate() {
-    this.form = this.$form.createForm(this, {name: 'blogForm'});
+  beforeCreate () {
+    this.form = this.$form.createForm(this, { name: 'blogForm' })
   },
   methods: {
-    handleChange1(v) {
+    handleChange1 (v) {
       this.value = v
     },
     // 上传图片 点击触发上传图片事件，大家获取文件把图片上传服务器然后返回url既可
-    async uploadImage(files) {
+    async uploadImage (files) {
       console.log('files', files)
       return [
         {
@@ -157,43 +163,42 @@ export default {
         }
       ]
     },
-    handleChange(info) {
+    handleChange (info) {
       if (info.file.status === 'uploading') {
-        this.loading = true;
-        return;
+        this.loading = true
+        return
       }
       if (info.file.status === 'done') {
         // Get this url from response in real world.
         getBase64(info.file.originFileObj, imageUrl => {
-          this.imageUrl = imageUrl;
-          this.loading = false;
-        });
+          this.imageUrl = imageUrl
+          this.loading = false
+        })
       }
     },
-    beforeUpload(file) {
-      const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    beforeUpload (file) {
+      const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'
       if (!isJpgOrPng) {
-        this.$message.error('You can only upload JPG file!');
+        this.$message.error('You can only upload JPG file!')
       }
-      const isLt2M = file.size / 1024 / 1024 < 2;
+      const isLt2M = file.size / 1024 / 1024 < 2
       if (!isLt2M) {
-        this.$message.error('封面图片过大，请裁剪压缩小于2MB后重新操作!');
+        this.$message.error('封面图片过大，请裁剪压缩小于2MB后重新操作!')
       }
-      return isJpgOrPng && isLt2M;
+      return isJpgOrPng && isLt2M
     },
-    handleCancel() {
+    handleCancel () {
       this.visible = false
     },
-    handleOk() {
-
+    handleOk () {
       this.$message.error('修改成功')
-      this.$message.success(this.value)
+      console.log(this.value)
       this.form.validateFields((err, values) => {
-        if (!err){
+        if (!err) {
 
         }
       })
-      /*const _this = this
+      /* const _this = this
       // 触发表单验证
       this.form.validateFields((err, values) => {
         // 验证表单没错误
@@ -211,8 +216,8 @@ export default {
           }
 
         }
-      })*/
-    },
+      }) */
+    }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div :class="wrpCls">
-<!--    <avatar-dropdown :menu="showMenu" :current-user="currentUser" :class="prefixCls" />-->
-    <avatar-dropdown :menu="showMenu" :current-user="currentUser"  />
+    <!--    <avatar-dropdown :menu="showMenu" :current-user="currentUser" :class="prefixCls" />-->
+    <avatar-dropdown :menu="showMenu" :current-user="currentUser" />
   </div>
 </template>
 
@@ -46,11 +46,11 @@ export default {
     }
   },
   mounted () {
-    /*setTimeout(() => {
+    /* setTimeout(() => {
       this.currentUser = {
         name: 'Serati Ma'
       }
-    }, 1500)*/
+    }, 1500) */
     this.currentUser = {
       name: 'Serati Ma'
     }
