@@ -1,21 +1,20 @@
 <template>
   <div class="antd-pro-components-article-list-content-index-listContent">
-<!--    <div>-->
+    <div class="content">
       <div class="description">
-        <slot>
           {{ description }}
-        </slot>
       </div>
-
+      <span class="coverImage">
+        <img src="/5.jpg"  height="120px" alt="">
+      </span>
+    </div>
+    <div class="footer">
       <div class="extra">
         <a-avatar :src="avatar" size="small" />
         <a :href="href">{{ owner }}</a> 发布在 <a :href="href">{{ href }}</a>
         <em>{{ updateAt | moment }}</em>
       </div>
-<!--    </div>
-    <span class="coverImage">
-      <img src="/avatar2.jpg"  height="120px" alt="">
-    </span>-->
+    </div>
   </div>
 </template>
 
@@ -55,33 +54,42 @@ export default {
 @import '../index.less';
 
 .antd-pro-components-article-list-content-index-listContent {
-  .description {
-    max-width: 720px;
-    line-height: 22px;
-  }
-  .coverImage{
-    float: right;
-  }
-  .extra {
-    margin-top: 16px;
-    color: @text-color-secondary;
-    line-height: 22px;
-
-    & /deep/ .ant-avatar {
-      position: relative;
-      top: 1px;
-      width: 20px;
-      height: 20px;
-      margin-right: 8px;
-      vertical-align: top;
+  .content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .description {
+      max-width: 720px;
+      line-height: 22px;
     }
-
-    & > em {
-      margin-left: 16px;
-      color: @disabled-color;
-      font-style: normal;
+    .coverImage{
+      //display: flex;
+      height: 80px;
+      margin-left: 12px;
     }
+  }
+  .footer{
+    .extra {
+      margin-top: 16px;
+      color: @text-color-secondary;
+      line-height: 22px;
 
+      & /deep/ .ant-avatar {
+        position: relative;
+        top: 1px;
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+        vertical-align: top;
+      }
+
+      & > em {
+        margin-left: 16px;
+        color: @disabled-color;
+        font-style: normal;
+      }
+
+    }
   }
 }
 
